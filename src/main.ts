@@ -10,6 +10,7 @@ document.body.innerHTML = `
 const button = document.getElementById("button")!;
 const counterElement = document.getElementById("counter")!;
 
+//comment
 button.addEventListener("click", () => {
   counter += 1;
   counterElement.textContent = counter.toString();
