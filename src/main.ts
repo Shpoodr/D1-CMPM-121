@@ -1,6 +1,11 @@
-import exampleIconUrl from "./noun-paperclip-7598668-00449F.png";
+import potatoImage from "./potatoImage.png";
 import "./style.css";
 
+//let counter: number = 0;
 document.body.innerHTML = `
-  <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
+  <p> counter: <span id="counter">0</span></p>
+  <button id="button"> <img src="${potatoImage}"</button>
 `;
+
+//const button = document.getElementById("button")!;
+//const counterElement = document.getElementById("counter")!;
