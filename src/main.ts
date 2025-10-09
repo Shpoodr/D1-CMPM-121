@@ -7,11 +7,15 @@ document.body.innerHTML = `
   <button id="button"> <img src="${potatoImage}"</button>
 `;
 
+function incrementCounter() {
+  counter += 1;
+  counterElement.textContent = counter.toString();
+}
+
+
 const button = document.getElementById("button")!;
 const counterElement = document.getElementById("counter")!;
 
 //comment
-button.addEventListener("click", () => {
-  counter += 1;
-  counterElement.textContent = counter.toString();
-});
+button.addEventListener("click", incrementCounter);
+setInterval(incrementCounter, 1000);
