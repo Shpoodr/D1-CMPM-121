@@ -5,15 +5,13 @@ import "./style.css";
 let counter: number = 0;
 let status = 0;
 let lastTime = 0;
-//let lastIncrement = 0;
-//const intervalSpeed = 1000; //1000 milliseconds = 1 second
 let counterIncreaseAmount = 0;
 let counterGrowthRate = 0;
 //let clickGrowthRate = 1;
 //cost things
-const firstUpgradeCost = 10;
-const secondUpgradeCost = 100;
-const thirdUpgradeCost = 1000;
+let firstUpgradeCost = 10;
+let secondUpgradeCost = 100;
+let thirdUpgradeCost = 1000;
 
 document.body.innerHTML = `
   <p> Total Potatos: <span id="counter">0</span></p>
@@ -68,7 +66,7 @@ pot.addEventListener("click", () => {
   if (counter >= firstUpgradeCost) {
     counterGrowthRate += 0.1;
     counter -= firstUpgradeCost;
-    //firstUpgradeCost *= 1.15;
+    firstUpgradeCost *= 1.15;
     pot.textContent = `Garden Pot cost: ${firstUpgradeCost.toFixed(2)}`;
   }
 });
@@ -76,7 +74,7 @@ patch.addEventListener("click", () => {
   if (counter >= secondUpgradeCost) {
     counterGrowthRate += 2;
     counter -= secondUpgradeCost;
-    //secondUpgradeCost *= 1.15;
+    secondUpgradeCost *= 1.15;
     patch.textContent = `Potato Patch cost: ${secondUpgradeCost.toFixed(2)}`;
   }
 });
@@ -84,7 +82,7 @@ tractor.addEventListener("click", () => {
   if (counter >= thirdUpgradeCost) {
     counterGrowthRate += 10;
     counter -= thirdUpgradeCost;
-    //thirdUpgradeCost *= 1.15;
+    thirdUpgradeCost *= 1.15;
     tractor.textContent = `A sorta working tractor cost: ${
       thirdUpgradeCost.toFixed(2)
     }`;
