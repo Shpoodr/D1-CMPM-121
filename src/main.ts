@@ -1,6 +1,7 @@
 import potatoImage from "./potatoImage.png";
 import "./style.css";
 
+//quick change
 //important variables used throughout the code
 let counter: number = 0;
 let status = 0;
