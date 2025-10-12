@@ -10,18 +10,58 @@ let counterIncreaseAmount = 0;
 let counterGrowthRate = 0;
 //let clickGrowthRate = 1;
 //cost things
-let firstUpgradeCost = 10;
-let secondUpgradeCost = 100;
-let thirdUpgradeCost = 1000;
 
 document.body.innerHTML = `
   <p> Total Potatos: <span id="counter">0</span></p>
   <p> Per Second: <span id ="status">${status}/s</span></p>
   <button id="button"> <img src="${potatoImage}"</button>
-  <button id="button2">Garden Pot cost: ${firstUpgradeCost}</button>
-  <button id="button3">Potato Patch cost: ${secondUpgradeCost}</button>
-  <button id="button4">A sorta working tractor cost: ${thirdUpgradeCost}</button>
+  <button id="button2">Garden Pot cost: 10</button>
+  <button id="button3">Potato Patch cost: 100</button>
+  <button id="button4">A sorta working tractor cost: 1000</button>
 `;
+
+interface Upgrade {
+  name: string;
+  cost: number;
+  growthRateIncrease: number;
+  button: HTMLElement;
+}
+
+const upgrades: Upgrade[] = [
+  {
+    name: "Garden Pot",
+    cost: 10,
+    growthRateIncrease: 0.1,
+    button: document.getElementById("button2")!,
+  },
+  {
+    name: "Potato Patch",
+    cost: 100,
+    growthRateIncrease: 2,
+    button: document.getElementById("button3")!,
+  },
+  {
+    name: "A sorta working tractor",
+    cost: 1000,
+    growthRateIncrease: 10,
+    button: document.getElementById("button4")!,
+  },
+];
+
+function upgrade(upgrade: Upgrade) {
+  upgrade.button.addEventListener("click", () => {
+    if (counter >= upgrade.cost) {
+      counterGrowthRate += upgrade.growthRateIncrease;
+      counter -= upgrade.cost;
+      upgrade.cost *= 1.15;
+      upgrade.button.textContent = `${upgrade.name} cost: ${
+        upgrade.cost.toFixed(2)
+      }`;
+    }
+  });
+}
+
+upgrades.forEach(upgrade);
 
 function incrementCounter(increaseAmount: number) {
   counter += increaseAmount;
@@ -42,52 +82,16 @@ function getAnimationInterval(timeStamp: number) {
   statusElement.textContent = `${status.toFixed(2)}/s`;
 
   incrementCounter(counterIncreaseAmount);
-  /*lastIncrement += deltaTime;
-  if (lastIncrement >= intervalSpeed) {
-    incrementCounter();
-    lastIncrement -= intervalSpeed;
-  }*/
   requestAnimationFrame(getAnimationInterval);
 }
 
 const button = document.getElementById("button")!;
-const pot = document.getElementById("button2")!;
-const patch = document.getElementById("button3")!;
-const tractor = document.getElementById("button4")!;
-//const button4 = document.getElementById("button4")!;
 const counterElement = document.getElementById("counter")!;
 const statusElement = document.getElementById("status")!;
 
 //comment
 button.addEventListener("click", () => {
   incrementCounter(1);
-});
-
-pot.addEventListener("click", () => {
-  if (counter >= firstUpgradeCost) {
-    counterGrowthRate += 0.1;
-    counter -= firstUpgradeCost;
-    firstUpgradeCost *= 1.15;
-    pot.textContent = `Garden Pot cost: ${firstUpgradeCost.toFixed(2)}`;
-  }
-});
-patch.addEventListener("click", () => {
-  if (counter >= secondUpgradeCost) {
-    counterGrowthRate += 2;
-    counter -= secondUpgradeCost;
-    secondUpgradeCost *= 1.15;
-    patch.textContent = `Potato Patch cost: ${secondUpgradeCost.toFixed(2)}`;
-  }
-});
-tractor.addEventListener("click", () => {
-  if (counter >= thirdUpgradeCost) {
-    counterGrowthRate += 10;
-    counter -= thirdUpgradeCost;
-    thirdUpgradeCost *= 1.15;
-    tractor.textContent = `A sorta working tractor cost: ${
-      thirdUpgradeCost.toFixed(2)
-    }`;
-  }
 });
 
 requestAnimationFrame(getAnimationInterval);
