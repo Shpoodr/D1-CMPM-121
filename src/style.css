@@ -12,6 +12,12 @@
 
 #button3 {
   position: absolute;
+  top: 150px;
+  left: 1200px;
+}
+
+#button4 {
+  position: absolute;
   top: 200px;
   left: 1200px;
 }
