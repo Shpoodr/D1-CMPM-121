@@ -36,35 +36,40 @@ const upgrades: Upgrade[] = [
     cost: 10,
     growthRateIncrease: 0.1,
     button: document.getElementById("button2")!,
-    description: "A small pot you can start growing potatos out of. Equivalent to 0.1 potatos per second.",
+    description:
+      "A small pot you can start growing potatos out of. Equivalent to 0.1 potatos per second.",
   },
   {
     name: "Potato Patch",
     cost: 100,
     growthRateIncrease: 1,
     button: document.getElementById("button3")!,
-    description: "A small patch of dirt to grow more potatos. Equivalent to 1 potato per second.",
+    description:
+      "A small patch of dirt to grow more potatos. Equivalent to 1 potato per second.",
   },
   {
     name: "A sorta working tractor",
     cost: 1000,
     growthRateIncrease: 10,
     button: document.getElementById("button4")!,
-    description: "A rusty tractor to help with the heavy lifting. Equivalent to 10 potatos per second.",
+    description:
+      "A rusty tractor to help with the heavy lifting. Equivalent to 10 potatos per second.",
   },
   {
     name: "Automatic farm",
     cost: 10000,
     growthRateIncrease: 50,
     button: document.getElementById("button5")!,
-    description: "A farm that does everything by it self. Equivalent to 50 potatos per second.",
+    description:
+      "A farm that does everything by it self. Equivalent to 50 potatos per second.",
   },
   {
     name: "Hydoponic Farm Lab",
     cost: 1000000,
     growthRateIncrease: 500,
     button: document.getElementById("button6")!,
-    description: "A high tech farm that grows potatos at an insane rate. Equivalent to 500 potatos per second.",
+    description:
+      "A high tech farm that grows potatos at an insane rate. Equivalent to 500 potatos per second.",
   },
 ];
 
