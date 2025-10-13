@@ -1,4 +1,4 @@
-import potatoImage from "./potatoImage.png";
+import potatoImage from "./download.png";
 import "./style.css";
 
 //quick change
@@ -8,18 +8,20 @@ let status = 0;
 let lastTime = 0;
 let counterIncreaseAmount = 0;
 let counterGrowthRate = 0;
-//let clickGrowthRate = 1;
-//cost things
 
 document.body.innerHTML = `
-  <p> Total Potatos: <span id="counter">0</span></p>
-  <p> Per Second: <span id ="status">${status}/s</span></p>
-  <button id="button"> <img src="${potatoImage}" class="potato-img"</button>
-  <button id="button2">Garden Pot cost: 10</button>
-  <button id="button3">Potato Patch cost: 100</button>
-  <button id="button4">A sorta working tractor cost: 1000</button>
-  <button id="button5">Automatic farm cost: 10000</button>
-  <button id="button6">Hydoponic Farm Lab cost: 1000000</button>
+  <div id="main-section">
+    <p> Total Potatos: <span id="counter">0</span></p>
+    <p> Per Second: <span id ="status">${status}/s</span></p>
+    <button id="button"> <img src="${potatoImage}" class="potato-img"</button>
+  </div>
+  <div id="upgrade-section">
+    <button id="button2" class="upgrade-btn">Garden Pot cost: 10</button>
+    <button id="button3" class="upgrade-btn">Potato Patch cost: 100</button>
+    <button id="button4" class="upgrade-btn">A sorta working tractor cost: 1000</button>
+    <button id="button5" class="upgrade-btn">Automatic farm cost: 10000</button>
+    <button id="button6" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
+  </div>
 `;
 
 interface Upgrade {
@@ -64,7 +66,7 @@ const upgrades: Upgrade[] = [
       "A farm that does everything by it self. Equivalent to 50 potatos per second.",
   },
   {
-    name: "Hydoponic Farm Lab",
+    name: "Hydroponic Farm Lab",
     cost: 1000000,
     growthRateIncrease: 500,
     button: document.getElementById("button6")!,
@@ -86,7 +88,7 @@ function upgrade(upgrade: Upgrade) {
   });
 }
 
-upgrades.forEach(upgrade);
+//upgrades.forEach(upgrade);
 upgrades.forEach((upg) => {
   upg.button.title = upg.description;
   upgrade(upg);
@@ -117,10 +119,14 @@ function getAnimationInterval(timeStamp: number) {
 const button = document.getElementById("button")!;
 const counterElement = document.getElementById("counter")!;
 const statusElement = document.getElementById("status")!;
+const potatoImg = document.querySelector(".potato-img") as HTMLImageElement;
 
-//comment
 button.addEventListener("click", () => {
   incrementCounter(1);
+  potatoImg.classList.add("clicked");
+  setTimeout(() => {
+    potatoImg.classList.remove("clicked");
+  }, 200);
 });
 
 requestAnimationFrame(getAnimationInterval);
