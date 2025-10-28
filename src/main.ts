@@ -24,20 +24,21 @@ document.body.innerHTML = `
     <button id="button"> <img src="${potatoImage}" class="potato-img"</button>
   </div>
   <div id="upgrade-section">
-    <button id="button2" class="upgrade-btn">Garden Pot cost: 10</button>
-    <button id="button3" class="upgrade-btn">Potato Patch cost: 100</button>
-    <button id="button4" class="upgrade-btn">A sorta working tractor cost: 1000</button>
-    <button id="button5" class="upgrade-btn">Automatic farm cost: 10000</button>
-    <button id="button6" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
+    <button id="gardenPotBTN" class="upgrade-btn">Garden Pot cost: 10</button>
+    <button id="potatoPatchBTN" class="upgrade-btn">Potato Patch cost: 100</button>
+    <button id="tractorBTN" class="upgrade-btn">A sorta working tractor cost: 1000</button>
+    <button id="autoFarmBTN" class="upgrade-btn">Automatic farm cost: 10000</button>
+    <button id="farmLabBTN" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
   </div>
 `;
 
+/* Available upgrades */
 const upgrades: Upgrade[] = [
   {
     name: "Garden Pot",
     cost: 10,
     growthRateIncrease: 0.1,
-    button: document.getElementById("button2")!,
+    button: document.getElementById("gardenPotBTN")!,
     description:
       "A small pot you can start growing potatos out of. Equivalent to 0.1 potatos per second.",
   },
@@ -45,7 +46,7 @@ const upgrades: Upgrade[] = [
     name: "Potato Patch",
     cost: 100,
     growthRateIncrease: 1,
-    button: document.getElementById("button3")!,
+    button: document.getElementById("potatoPatchBTN")!,
     description:
       "A small patch of dirt to grow more potatos. Equivalent to 1 potato per second.",
   },
@@ -53,7 +54,7 @@ const upgrades: Upgrade[] = [
     name: "A sorta working tractor",
     cost: 1000,
     growthRateIncrease: 10,
-    button: document.getElementById("button4")!,
+    button: document.getElementById("tractorBTN")!,
     description:
       "A rusty tractor to help with the heavy lifting. Equivalent to 10 potatos per second.",
   },
@@ -61,7 +62,7 @@ const upgrades: Upgrade[] = [
     name: "Automatic farm",
     cost: 10000,
     growthRateIncrease: 50,
-    button: document.getElementById("button5")!,
+    button: document.getElementById("autoFarmBTN")!,
     description:
       "A farm that does everything by it self. Equivalent to 50 potatos per second.",
   },
@@ -69,12 +70,12 @@ const upgrades: Upgrade[] = [
     name: "Hydroponic Farm Lab",
     cost: 1000000,
     growthRateIncrease: 500,
-    button: document.getElementById("button6")!,
+    button: document.getElementById("farmLabBTN")!,
     description:
       "A high tech farm that grows potatos at an insane rate. Equivalent to 500 potatos per second.",
   },
 ];
-
+/* Function upgrades and incrementing */
 function upgrade(upgrade: Upgrade) {
   upgrade.button.addEventListener("click", () => {
     if (counter >= upgrade.cost) {
@@ -98,6 +99,7 @@ function incrementCounter(increaseAmount: number) {
   counterElement.textContent = counter.toFixed(2);
 }
 
+/* Game State loop */
 function gameLoop(timeStamp: number) {
   //this means timeStamp is 0 or the first frame
   if (timeStamp === 0) {
