@@ -1,13 +1,21 @@
 import potatoImage from "./download.png";
 import "./style.css";
 
-//quick change
 //important variables used throughout the code
 let counter: number = 0;
 let status = 0;
 let lastTime = 0;
 let counterIncreaseAmount = 0;
 let counterGrowthRate = 0;
+
+//upgrade definition
+interface Upgrade {
+  name: string;
+  cost: number;
+  growthRateIncrease: number;
+  button: HTMLElement;
+  description: string;
+}
 
 document.body.innerHTML = `
   <div id="main-section">
@@ -23,14 +31,6 @@ document.body.innerHTML = `
     <button id="button6" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
   </div>
 `;
-
-interface Upgrade {
-  name: string;
-  cost: number;
-  growthRateIncrease: number;
-  button: HTMLElement;
-  description: string;
-}
 
 const upgrades: Upgrade[] = [
   {
@@ -88,7 +88,6 @@ function upgrade(upgrade: Upgrade) {
   });
 }
 
-//upgrades.forEach(upgrade);
 upgrades.forEach((upg) => {
   upg.button.title = upg.description;
   upgrade(upg);
@@ -99,7 +98,7 @@ function incrementCounter(increaseAmount: number) {
   counterElement.textContent = counter.toFixed(2);
 }
 
-function getAnimationInterval(timeStamp: number) {
+function gameLoop(timeStamp: number) {
   //this means timeStamp is 0 or the first frame
   if (timeStamp === 0) {
     lastTime = timeStamp;
@@ -113,15 +112,16 @@ function getAnimationInterval(timeStamp: number) {
   statusElement.textContent = `${status.toFixed(2)}/s`;
 
   incrementCounter(counterIncreaseAmount);
-  requestAnimationFrame(getAnimationInterval);
+  requestAnimationFrame(gameLoop);
 }
 
-const button = document.getElementById("button")!;
+//html element references
+const clickerButton = document.getElementById("button")!;
 const counterElement = document.getElementById("counter")!;
 const statusElement = document.getElementById("status")!;
 const potatoImg = document.querySelector(".potato-img") as HTMLImageElement;
 
-button.addEventListener("click", () => {
+clickerButton.addEventListener("click", () => {
   incrementCounter(1);
   potatoImg.classList.add("clicked");
   setTimeout(() => {
@@ -129,4 +129,4 @@ button.addEventListener("click", () => {
   }, 200);
 });
 
-requestAnimationFrame(getAnimationInterval);
+requestAnimationFrame(gameLoop);
