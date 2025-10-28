@@ -2,8 +2,8 @@ import potatoImage from "./download.png";
 import "./style.css";
 
 //important variables used throughout the code
-let counter: number = 0;
-let status = 0;
+let potatoCounter: number = 0;
+let growthRatePerSecond = 0;
 let lastTime = 0;
 let counterIncreaseAmount = 0;
 let counterGrowthRate = 0;
@@ -31,6 +31,13 @@ document.body.innerHTML = `
     <button id="farmLabBTN" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
   </div>
 `;
+
+/* html element references */
+const clickerButton = document.getElementById("button")!;
+const counterElement = document.getElementById("counter")!;
+const statusElement = document.getElementById("status")!;
+const potatoImg = document.querySelector(".potato-img") as HTMLImageElement;
+
 
 /* Available upgrades */
 const upgrades: Upgrade[] = [
@@ -75,12 +82,13 @@ const upgrades: Upgrade[] = [
       "A high tech farm that grows potatos at an insane rate. Equivalent to 500 potatos per second.",
   },
 ];
+
 /* Function upgrades and incrementing */
 function upgrade(upgrade: Upgrade) {
   upgrade.button.addEventListener("click", () => {
-    if (counter >= upgrade.cost) {
+    if (potatoCounter >= upgrade.cost) {
       counterGrowthRate += upgrade.growthRateIncrease;
-      counter -= upgrade.cost;
+      potatoCounter -= upgrade.cost;
       upgrade.cost *= 1.15;
       upgrade.button.textContent = `${upgrade.name} cost: ${
         upgrade.cost.toFixed(2)
@@ -95,8 +103,8 @@ upgrades.forEach((upg) => {
 });
 
 function incrementCounter(increaseAmount: number) {
-  counter += increaseAmount;
-  counterElement.textContent = counter.toFixed(2);
+  potatoCounter += increaseAmount;
+  counterElement.textContent = potatoCounter.toFixed(2);
 }
 
 /* Game State loop */
@@ -110,19 +118,14 @@ function gameLoop(timeStamp: number) {
   const deltaTime = timeStamp - lastTime;
   lastTime = timeStamp;
   counterIncreaseAmount = (deltaTime / 1000) * counterGrowthRate;
-  status = counterGrowthRate;
-  statusElement.textContent = `${status.toFixed(2)}/s`;
+  growthRatePerSecond = counterGrowthRate;
+  statusElement.textContent = `${growthRatePerSecond.toFixed(2)}/s`;
 
   incrementCounter(counterIncreaseAmount);
   requestAnimationFrame(gameLoop);
 }
 
-//html element references
-const clickerButton = document.getElementById("button")!;
-const counterElement = document.getElementById("counter")!;
-const statusElement = document.getElementById("status")!;
-const potatoImg = document.querySelector(".potato-img") as HTMLImageElement;
-
+/* Event Listeners */
 clickerButton.addEventListener("click", () => {
   incrementCounter(1);
   potatoImg.classList.add("clicked");
