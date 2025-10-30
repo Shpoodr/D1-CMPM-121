@@ -15,6 +15,7 @@ interface Upgrade {
   growthRateIncrease: number;
   button: HTMLElement;
   description: string;
+  amount: number;
 }
 
 document.body.innerHTML = `
@@ -23,11 +24,11 @@ document.body.innerHTML = `
     <p> Per Second: <span id ="status">${status}/s</span></p>
     <button id="potatoButton"> <img src="${potatoImage}" class="potato-img"</button>
     <div id="upgrade-section">
-      <button id="gardenPotBTN" class="upgrade-btn">Garden Pot cost: 10</button>
-      <button id="potatoPatchBTN" class="upgrade-btn">Potato Patch cost: 100</button>
-      <button id="tractorBTN" class="upgrade-btn">A sorta working tractor cost: 1000</button>
-      <button id="autoFarmBTN" class="upgrade-btn">Automatic farm cost: 10000</button>
-      <button id="farmLabBTN" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
+      <button id="gardenPotBTN" class="upgrade-btn">Garden Pot cost: 10 Amount: 0</button>
+      <button id="potatoPatchBTN" class="upgrade-btn">Potato Patch cost: 100 Amount: 0</button>
+      <button id="tractorBTN" class="upgrade-btn">A sorta working tractor cost: 1000 Amount: 0</button>
+      <button id="autoFarmBTN" class="upgrade-btn">Automatic farm cost: 10000 Amount: 0</button>
+      <button id="farmLabBTN" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000 Amount: 0</button>
     </div>
   </div>
 `;
@@ -47,6 +48,7 @@ const upgrades: Upgrade[] = [
     button: document.getElementById("gardenPotBTN")!,
     description:
       "A small pot you can start growing potatos out of. Equivalent to 0.1 potatos per second.",
+    amount: 0,
   },
   {
     name: "Potato Patch",
@@ -55,6 +57,7 @@ const upgrades: Upgrade[] = [
     button: document.getElementById("potatoPatchBTN")!,
     description:
       "A small patch of dirt to grow more potatos. Equivalent to 1 potato per second.",
+    amount: 0,
   },
   {
     name: "A sorta working tractor",
@@ -63,6 +66,7 @@ const upgrades: Upgrade[] = [
     button: document.getElementById("tractorBTN")!,
     description:
       "A rusty tractor to help with the heavy lifting. Equivalent to 10 potatos per second.",
+    amount: 0,
   },
   {
     name: "Automatic farm",
@@ -71,6 +75,7 @@ const upgrades: Upgrade[] = [
     button: document.getElementById("autoFarmBTN")!,
     description:
       "A farm that does everything by it self. Equivalent to 50 potatos per second.",
+    amount: 0,
   },
   {
     name: "Hydroponic Farm Lab",
@@ -79,6 +84,7 @@ const upgrades: Upgrade[] = [
     button: document.getElementById("farmLabBTN")!,
     description:
       "A high tech farm that grows potatos at an insane rate. Equivalent to 500 potatos per second.",
+    amount: 0,
   },
 ];
 
@@ -91,7 +97,7 @@ function upgrade(upgrade: Upgrade) {
       upgrade.cost *= 1.15;
       upgrade.button.textContent = `${upgrade.name} cost: ${
         upgrade.cost.toFixed(2)
-      }`;
+      } Amount: ${++upgrade.amount}`;
     }
   });
 }

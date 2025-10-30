@@ -35,12 +35,13 @@ body {
 
 #main-section {
   position: center;
-  background: #fffbe6;
+  width: 600px;
+  height: auto;
+  background: #ffda8b;
   border: 2px solid #966f33;
   border-radius: 18px;
   padding: 32px 24px;
   margin: 32px auto;
-  width: 350px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
@@ -48,10 +49,10 @@ body {
 }
 
 #potatoButton {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  border: 4px solid #966f33;
+  border: 10px solid #c99952;
   background: linear-gradient(to bottom, #fde08d, #fbb62c);
   display: flex;
   justify-content: center;
