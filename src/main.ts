@@ -21,23 +21,22 @@ document.body.innerHTML = `
   <div id="main-section">
     <p> Total Potatos: <span id="counter">0</span></p>
     <p> Per Second: <span id ="status">${status}/s</span></p>
-    <button id="button"> <img src="${potatoImage}" class="potato-img"</button>
-  </div>
-  <div id="upgrade-section">
-    <button id="gardenPotBTN" class="upgrade-btn">Garden Pot cost: 10</button>
-    <button id="potatoPatchBTN" class="upgrade-btn">Potato Patch cost: 100</button>
-    <button id="tractorBTN" class="upgrade-btn">A sorta working tractor cost: 1000</button>
-    <button id="autoFarmBTN" class="upgrade-btn">Automatic farm cost: 10000</button>
-    <button id="farmLabBTN" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
+    <button id="potatoButton"> <img src="${potatoImage}" class="potato-img"</button>
+    <div id="upgrade-section">
+      <button id="gardenPotBTN" class="upgrade-btn">Garden Pot cost: 10</button>
+      <button id="potatoPatchBTN" class="upgrade-btn">Potato Patch cost: 100</button>
+      <button id="tractorBTN" class="upgrade-btn">A sorta working tractor cost: 1000</button>
+      <button id="autoFarmBTN" class="upgrade-btn">Automatic farm cost: 10000</button>
+      <button id="farmLabBTN" class="upgrade-btn">Hydoponic Farm Lab cost: 1000000</button>
+    </div>
   </div>
 `;
 
 /* html element references */
-const clickerButton = document.getElementById("button")!;
+const clickerButton = document.getElementById("potatoButton")!;
 const counterElement = document.getElementById("counter")!;
 const statusElement = document.getElementById("status")!;
 const potatoImg = document.querySelector(".potato-img") as HTMLImageElement;
-
 
 /* Available upgrades */
 const upgrades: Upgrade[] = [
